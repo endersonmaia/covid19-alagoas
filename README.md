@@ -5,7 +5,7 @@ O repositório contém scripts para baixar todos os boletins informativos do COV
 ## Objetivos
 
  - [X] Baixar e manter cópia dos boletins no repositório
- - [ ] Automatizar download periódico dos boletins e publicação no repositório
+ - [X] Automatizar download periódico dos boletins e publicação no repositório
  - [ ] Manter arquivos CSV com dados sobre confirmados e óbitos
  - [ ] Manter arquivos CSV com dados de ocupação de leitos
  - [ ] Automatizar coleta de dados para geração do CSV
