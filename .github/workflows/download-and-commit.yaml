@@ -1,0 +1,32 @@
+name: download-and-commit
+
+on:
+  push:
+  pull_request:
+#  schedule:
+#    - cron:  '0 8,12,16,19,22 * * *'
+
+jobs:
+  run:
+    name: Download and Commit
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+
+    - name: Install requirements
+      run: sudo apt-get install -y --no-install-recommends fdupes html-xml-utils
+
+    - name: Download files
+      run: ./download.sh
+
+    - name: Commit changes
+      uses: EndBug/add-and-commit@v4
+      with:
+        author_name: Enderson Maia
+        author_email: endersonmaia@gmail.com
+        message: "update files"
+        add: "./leitos/*.pdf ./boletins/*.pdf ./sintomas/*.csv"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
