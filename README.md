@@ -18,8 +18,8 @@ Este script faz o download de todos os boletins.
 
 Requisitos :
 
- - html-xml-utils
-
+ * html-xml-utils
+ * fdupes
 
 ```shell
 $> ./download.sh
@@ -36,6 +36,11 @@ LEITOS-20-DE-ABRIL-13H.pdf já baixado.
 LEITOS-21-DE-ABRIL-10H.pdf.pdf.pdf já baixado.
 ...
 Feito.
+Baixando ultimo arquivo CSV de sintomas...
+                                        
+   [+] ./sintomas/sinomtas-2020-05-15-11:48:37.1589554117.csv
+   [-] ./sintomas/sinomtas-2020-05-15-12:00:41.1589554841.csv
+   [-] ./sintomas/sinomtas-2020-05-15-12:00:46.1589554846.csv
 ```
 
 ### ./cnes/load_cnes.sh
