@@ -35,7 +35,7 @@ rm ${LEITOS_HTML_FILE}
 echo "Feito."
 
 echo "Baixando ultimo arquivo CSV de sintomas..."
-curl -fsSL -o "${SINTOMAS_DOWNLOAD_PATH}/${SINTOMAS_CSV_FILE}.csv" https://envio.seplag.al.gov.br/covid19/public/dados/sintomas
+curl -fsSL -o "${SINTOMAS_DOWNLOAD_PATH}/${SINTOMAS_CSV_FILE}.csv" http://covid19.dados.al.gov.br/dados/sintomas
 if [ $? -eq "0" ]; then
     echo "Removendo duplicidades..."
     fdupes --delete --noprompt ${SINTOMAS_DOWNLOAD_PATH}
