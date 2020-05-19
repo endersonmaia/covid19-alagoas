@@ -6,7 +6,7 @@ on:
 
 jobs:
   run:
-    name: Download and Commit
+    name: Download and Commit Boletins
     runs-on: ubuntu-latest
     
     steps:
@@ -17,7 +17,7 @@ jobs:
       run: sudo apt-get install -y --no-install-recommends fdupes html-xml-utils
 
     - name: Download files
-      run: ./download.sh
+      run: ./download-boletins.sh
 
     - name: Commit changes
       uses: EndBug/add-and-commit@v4
