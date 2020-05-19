@@ -1,8 +1,8 @@
-name: download-and-commit
+name: download-and-commit-boletins
 
 on:
   schedule:
-    - cron:  '0 8,12,16,19,22 * * *'
+    - cron:  '0 */4 * * *'
 
 jobs:
   run:
@@ -24,7 +24,7 @@ jobs:
       with:
         author_name: Enderson Maia
         author_email: endersonmaia@gmail.com
-        message: "update files"
-        add: "./leitos/*.pdf ./boletins/*.pdf ./sintomas/*.csv"
+        message: "update PDF boletim files"
+        add: "./leitos/*.pdf ./boletins/*.pdf"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -6,9 +6,6 @@ BOLETINS_DOWNLOAD_PATH=./boletins
 LEITOS_HTML_FILE=leitos.html
 LEITOS_DOWNLOAD_PATH=./leitos
 
-SINTOMAS_CSV_FILE="sintomas-$(date +%Y-%m-%d-%H:%M:%S.%s)"
-SINTOMAS_DOWNLOAD_PATH=./sintomas
-
 echo "Recuperando lista de PDFs para baixar..."
 curl -sSL -o ${LEITOS_HTML_FILE} http://www.saude.al.gov.br/leitos-para-enfrentamento-da-covid-19/
 curl -sSL -o ${BOLETINS_HTML_FILE} http://cidadao.saude.al.gov.br/saude-para-voce/coronavirus/
@@ -33,13 +30,3 @@ for pdf in $(hxnormalize ${LEITOS_HTML_FILE} | hxwls 2> /dev/null | grep -i 'pdf
 done
 rm ${LEITOS_HTML_FILE}
 echo "Feito."
-
-echo "Baixando ultimo arquivo CSV de sintomas..."
-curl -fsSL -o "${SINTOMAS_DOWNLOAD_PATH}/${SINTOMAS_CSV_FILE}.csv" http://covid19.dados.al.gov.br/dados/sintomas
-if [ $? -eq "0" ]; then
-    echo "Removendo duplicidades..."
-    fdupes --delete --noprompt ${SINTOMAS_DOWNLOAD_PATH}
-    echo "Feito."
-else
-    echo "Falha ao baixar CSV"
-fi
