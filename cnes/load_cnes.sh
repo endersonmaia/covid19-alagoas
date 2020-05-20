@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export DATE="202003"
+export DATE="202004"
 export TABELAS="tbTipoEstabelecimento tbLeito rlEstabComplementar tbEstabelecimento "
 
 echo "Baixando base de dados CNES (BASE_DE_DADOS_CNES_${DATE}.ZIP)"
