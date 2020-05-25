@@ -8,13 +8,16 @@ jobs:
   run:
     name: Download and Commit Boletins
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout repo
       uses: actions/checkout@v2
 
     - name: Install requirements
-      run: sudo apt-get install -y --no-install-recommends fdupes html-xml-utils
+      run: sudo apt-get install -y --no-install-recommends fdupes html-xml-utils poppler-utils
+
+    - name: Define LOCALE
+      run: export LC_ALL=pt_BR.UTF-8; export LANG=pt_BR.UTF-8
 
     - name: Download files
       run: ./download-boletins.sh
@@ -25,6 +28,6 @@ jobs:
         author_name: Enderson Maia
         author_email: endersonmaia@gmail.com
         message: "update PDF boletim files"
-        add: "./leitos/*.pdf ./boletins/*.pdf"
+        add: "./leitos/**/*.pdf ./boletins/**/*.pdf"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
