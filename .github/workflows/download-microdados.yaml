@@ -25,6 +25,6 @@ jobs:
         author_name: Enderson Maia
         author_email: endersonmaia@gmail.com
         message: "update microdados files"
-        add: "./sintomas/*.csv"
+        add: "./sintomas/**/*.csv"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
