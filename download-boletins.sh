@@ -13,20 +13,31 @@ echo "Feito."
 
 echo "Baixando PDFs dos boletins..."
 for pdf in $(hxnormalize ${BOLETINS_HTML_FILE} | hxwls 2> /dev/null | grep -i pdf | grep -i informe); do
-    filename=$(echo ${pdf} | sed 's/.*\///')
-    [ -f "${BOLETINS_DOWNLOAD_PATH}/${filename}" ] && echo "${filename} já baixado." && continue
-    echo "${filename} -> ${BOLETINS_DOWNLOAD_PATH}/ ..."
-    (cd ${BOLETINS_DOWNLOAD_PATH} && curl -sSLO ${pdf})
+    filename=$(echo "${pdf}" | sed 's/.*\///')
+    year_month_path=$(pdfinfo -isodates "${pdf}" | sed -e '/ModDate/!d;s/.*\([0-9]\{4\}\)-\([0-9]\{2\}\).*/\1-\2/')
+    filepath="${BOLETINS_DOWNLOAD_PATH}/${year_month_path}/${filename}"
+    mkdir -p "${BOLETINS_DOWNLOAD_PATH}/${year_month_path}"
+
+    [ -f "$filepath" ] && echo "${filepath} já baixado." && continue
+    echo "Salvando em ${filepath} ..."
+    (cd ${BOLETINS_DOWNLOAD_PATH}/$year_month_path && curl -sSLO ${pdf})
 done
 rm ${BOLETINS_HTML_FILE}
 echo "Feito."
 
 echo "Baixando PDFs dos leitos..."
 for pdf in $(hxnormalize ${LEITOS_HTML_FILE} | hxwls 2> /dev/null | grep -i 'pdf'); do
-    filename=$(echo ${pdf} | sed 's/.*\///')
-    [ -f "${LEITOS_DOWNLOAD_PATH}/${filename}" ] && echo "${filename} já baixado." && continue
-    echo "${filename} -> ${LEITOS_DOWNLOAD_PATH}/ ..."
-    (cd ${LEITOS_DOWNLOAD_PATH} && curl -sSLO ${pdf})
+    filename=$(echo "${pdf}" | sed 's/.*\///')
+    year_month_path=$(pdfinfo -isodates "${pdf}" | sed -e '/ModDate/!d;s/.*\([0-9]\{4\}\)-\([0-9]\{2\}\).*/\1-\2/')
+    filepath="${LEITOS_DOWNLOAD_PATH}/${year_month_path}/${filename}"
+    mkdir -p "${LEITOS_DOWNLOAD_PATH}/${year_month_path}"
+
+    [ -f "${filepath}" ] && echo "${filepath} já baixado." && continue
+    echo "Salvando em ${filepath} ..."
+    (cd ${LEITOS_DOWNLOAD_PATH}/${year_month_path} && curl -sSLO ${pdf})
 done
-rm ${LEITOS_HTML_FILE}
+
+rm "${LEITOS_HTML_FILE}"
+rm "${BOLETINS_HTML_FILE}"
+
 echo "Feito."
