@@ -16,9 +16,6 @@ jobs:
     - name: Install requirements
       run: sudo apt-get install -y --no-install-recommends fdupes html-xml-utils poppler-utils
 
-    - name: Define LOCALE
-      run: export LC_ALL=pt_BR.UTF-8; export LANG=pt_BR.UTF-8
-
     - name: Download files
       run: ./download-boletins.sh
 
