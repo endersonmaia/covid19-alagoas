@@ -11,7 +11,7 @@ function get_pdfs() {
     for pdf_url in $(hxnormalize $HTML | hxwls 2> /dev/null | grep -i '.pdf' | grep -i -e 'leito' -e 'informe'); do
         pdf_filename=$(echo "$pdf_url" | sed 's/.*\///')
 
-        find $path -name $pdf_filename > /dev/null
+        find $path -name $pdf_filename | egrep ".*"
         if [ $? -eq 0 ]; then
             echo "$pdf_filename já baixado."
             continue
