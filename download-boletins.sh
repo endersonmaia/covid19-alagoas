@@ -31,5 +31,5 @@ function get_pdfs() {
     echo "Feito."
 }
 
-get_pdfs "http://www.saude.al.gov.br/leitos-para-enfrentamento-da-covid-19" "./leitos"
+get_pdfs "https://www.saude.al.gov.br/leitos-para-enfrentamento-da-covid-19/" "./leitos"
 get_pdfs "http://cidadao.saude.al.gov.br/saude-para-voce/coronavirus/" "./boletins"
