@@ -6,7 +6,7 @@ function get_pdfs() {
 
     HTML=arquivo.html
 
-    curl -sSL -o $HTML $url
+    curl -fsSL -o $HTML $url
     echo "Recuperando lista de PDFs ..."
     for pdf_url in $(hxnormalize $HTML | hxwls 2> /dev/null | grep -i '.pdf' | grep -i -e 'leito' -e 'informe'); do
         pdf_filename=$(echo "$pdf_url" | sed 's/.*\///')
