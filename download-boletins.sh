@@ -18,7 +18,7 @@ function get_pdfs() {
         fi
 
         echo "Baixando $pdf_url ..."
-        (cd $path && curl -sSLO $pdf_url)
+        (cd $path && curl -kfsSLO $pdf_url)
 
         YYYY_MM=$(pdfinfo -isodates "$path/$pdf_filename" | sed -e '/ModDate/!d;s/.*\([0-9]\{4\}\)-\([0-9]\{2\}\).*/\1-\2/')
         mkdir -p "$path/$YYYY_MM"
